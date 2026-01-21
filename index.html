@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Optimizer - WebP Conversion & Optimization</title>
+    <meta name="description" content="Professional image optimization and WebP conversion tool. Optimize and convert images to WebP, JPEG, and PNG formats with quality control and batch processing.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><rect x='20' y='20' width='60' height='60' rx='4' fill='none' stroke='white' stroke-width='4'/><circle cx='38' cy='38' r='6' fill='white'/><path d='M 20 65 L 35 45 L 50 60 L 70 35 L 80 45 L 80 80 L 20 80 Z' fill='white' opacity='0.9'/></svg>">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Optimizer</h1>
+            <p class="subtitle">Professional image optimization and WebP conversion</p>
+        </header>
+
+        <main class="main-layout">
+            <!-- Left Panel: Upload & Controls -->
+            <div class="left-panel">
+                <section class="upload-section">
+                    <div class="drop-zone" id="dropZone">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h3>Drop images here or click to browse</h3>
+                        <p>Supports JPG, PNG, WebP formats</p>
+                        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple hidden>
+                    </div>
+                </section>
+
+                <section class="controls-section" id="controlsSection" style="display: none;">
+                    <h3 class="section-title">Settings</h3>
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label for="format">Format</label>
+                            <select id="format" class="control-input">
+                                <option value="webp">WebP</option>
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="quality">Quality: <span id="qualityValue">85</span>%</label>
+                            <input type="range" id="quality" class="control-slider" min="1" max="100" value="85">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="maxWidth">Max Width</label>
+                            <input type="number" id="maxWidth" class="control-input" placeholder="Auto" min="1">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="maxHeight">Max Height</label>
+                            <input type="number" id="maxHeight" class="control-input" placeholder="Auto" min="1">
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="processBtn" class="btn btn-primary">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                            </svg>
+                            Process Images
+                        </button>
+                        <button id="clearBtn" class="btn btn-secondary">Clear All</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Panel: Images -->
+            <div class="right-panel">
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <h2>No images yet</h2>
+                    <p>Drop images here or click the upload area to get started</p>
+                    <div class="empty-features">
+                        <div class="empty-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <span>WebP Conversion</span>
+                        </div>
+                        <div class="empty-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                            <span>Size Optimization</span>
+                        </div>
+                        <div class="empty-feature">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                                <rect x="1" y="3" width="22" height="5"></rect>
+                                <line x1="10" y1="12" x2="14" y2="12"></line>
+                            </svg>
+                            <span>Batch Processing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="images-section" id="imagesSection" style="display: none;">
+                    <div class="panel-header">
+                        <h2>Images <span id="imageCount">(0)</span></h2>
+                        <button id="downloadAllBtn" class="btn btn-primary btn-small" style="display: none;">Download All</button>
+                    </div>
+                    <div class="scrollable-content">
+                        <div class="image-grid" id="imageGrid"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
